@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grafične Kartice - Popoln Vodnik</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #6a11cb;
+            --secondary: #2575fc;
+            --accent: #ff2d75;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --future: #00d4ff;
+            --success: #4CAF50;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--dark), #16213e);
+            color: var(--light);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 15px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255,255,255,0.1);
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            opacity: 0.9;
+            position: relative;
+        }
+        
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .nav-btn {
+            padding: 12px 25px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            font-size: 0.9rem;
+        }
+        
+        .nav-btn:hover, .nav-btn.active {
+            background: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 45, 117, 0.4);
+        }
+        
+        /* Page Content */
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Card Styles */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .card-header {
+            padding: 20px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .card-icon {
+            font-size: 2rem;
+            background: rgba(255, 255, 255, 0.2);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .card-body {
+            padding: 25px;
+        }
+        
+        .card-body p {
+            margin-bottom: 15px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .specs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .spec {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .spec:hover {
+            background: var(--accent);
+            transform: scale(1.05);
+        }
+        
+        /* Comparison Section */
+        .comparison {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 50px 0;
+            backdrop-filter: blur(10px);
+        }
+        
+        .comparison h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.2rem;
+            color: var(--accent);
+        }
+        
+        .comparison-table {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .comparison-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .comparison-card:hover {
+            transform: scale(1.03);
+            background: rgba(255, 255, 255, 0.08);
+        }
+        
+        .comparison-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
+        
+        .price {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 15px 0;
+            color: white;
+        }
+        
+        /* Performance Table */
+        .performance-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .performance-table th, .performance-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .performance-table th {
+            background: rgba(255, 255, 255, 0.1);
+            font-weight: 600;
+        }
+        
+        .performance-table tr:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .performance-rating {
+            color: gold;
+        }
+        
+        /* Mining Section */
+        .mining-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .mining-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .mining-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .mining-card h3 {
+            color: var(--accent);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        /* 50 Series Section */
+        .series-highlight {
+            background: linear-gradient(135deg, var(--future), #4e54c8);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .series-highlight h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .series-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .series-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .series-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 212, 255, 0.2);
+        }
+        
+        .series-card h3 {
+            color: var(--future);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        /* Links Section */
+        .store-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 30px 0;
+            justify-content: center;
+        }
+        
+        .store-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .store-link:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        /* Modal for term explanations */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background: linear-gradient(135deg, var(--dark), #16213e);
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 600px;
+            width: 90%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--accent);
+        }
+        
+        .modal h2 {
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+        
+        /* Mining profitability table */
+        .profitability-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .profitability-table th, .profitability-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .profitability-table th {
+            background: rgba(255, 255, 255, 0.1);
+            font-weight: 600;
+        }
+        
+        .profitability-table tr:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .profit-positive {
+            color: var(--success);
+            font-weight: bold;
+        }
+        
+        .profit-negative {
+            color: var(--accent);
+            font-weight: bold;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent);
+            transform: translateY(-5px);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .comparison-table {
+                grid-template-columns: 1fr;
+            }
+            
+            nav {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-btn {
+                width: 80%;
+            }
+            
+            .performance-table, .profitability-table {
+                font-size: 0.9rem;
+            }
+            
+            .store-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .store-link {
+                width: 80%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Grafične Kartice</h1>
+            <p class="subtitle">Popoln vodnik po svetu GPU-jev za gaming in rudarjenje</p>
+        </header>
+        
+        <nav>
+            <button class="nav-btn active" data-page="home">Domov</button>
+            <button class="nav-btn" data-page="comparison">Primerjave</button>
+            <button class="nav-btn" data-page="performance">Performance</button>
+            <button class="nav-btn" data-page="mining">Mining</button>
+            <button class="nav-btn" data-page="series50">50 Serija</button>
+            <button class="nav-btn" data-page="buying">Nakup</button>
+        </nav>
+        
+        <!-- Home Page -->
+        <div id="home" class="page active">
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <h2 class="card-title">Gaming</h2>
+                    </div>
+                    <div class="card-body">
+                        <p>Moderne grafične kartice omogočajo neverjetno izkušnjo igranja z visoko ločljivostjo in visokimi frekvencami osveževanja.</p>
+                        <p>Za gaming priporočamo kartice z vsaj 8 GB VRAM-a in podporo za tehnologije kot so <span class="spec" data-term="dlss">DLSS</span> in <span class="spec" data-term="raytracing">Ray Tracing</span>.</p>
+                        <div class="specs">
+                            <span class="spec" data-term="raytracing">Ray Tracing</span>
+                            <span class="spec" data-term="dlss">DLSS/FSR</span>
+                            <span class="spec" data-term="fps">Visok FPS</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-digital-tachograph"></i>
+                        </div>
+                        <h2 class="card-title">Mining</h2>
+                    </div>
+                    <div class="card-body">
+                        <p>Za rudarjenje kripto valut so ključne kartice z visoko <span class="spec" data-term="hashrate">hash hitrostjo</span> in nizko porabo energije.</p>
+                        <p>NVIDIA kartice so učinkovite za algoritme kot je Ethash, medtem ko AMD prevladuje pri drugih algoritmih.</p>
+                        <div class="specs">
+                            <span class="spec" data-term="hashrate">Hash Rate</span>
+                            <span class="spec" data-term="power">Energetska učinkovitost</span>
+                            <span class="spec" data-term="vram">VRAM</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-desktop"></i>
+                        </div>
+                        <h2 class="card-title">Ustvarjalnost</h2>
+                    </div>
+                    <div class="card-body">
+                        <p>Grafične kartice so ključne tudi za video urejanje, 3D modeliranje in druge ustvarjalne naloge.</p>
+                        <p><span class="spec" data-term="cuda">CUDA</span> jedra pri NVIDIA in računska moč pri AMD pospešujejo renderjanje in druge zahtevne procese.</p>
+                        <div class="specs">
+                            <span class="spec" data-term="cuda">CUDA/OpenCL</span>
+                            <span class="spec" data-term="rendering">Renderjanje</span>
+                            <span class="spec" data-term="8k">8K Urejanje</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="comparison">
+                <h2>Primerjaj Možnosti</h2>
+                <div class="comparison-table">
+                    <div class="comparison-card">
+                        <h3>Začetniška</h3>
+                        <p>GTX 1660 Super</p>
+                        <div class="price">~ 250€</div>
+                        <p>Dober izbor za 1080p gaming in osnovno rudarjenje</p>
+                    </div>
+                    
+                    <div class="comparison-card">
+                        <h3>Srednja</h3>
+                        <p>RTX 3060 Ti</p>
+                        <div class="price">~ 450€</div>
+                        <p>Odlična za 1440p gaming in učinkovito rudarjenje</p>
+                    </div>
+                    
+                    <div class="comparison-card">
+                        <h3>Visoka</h3>
+                        <p>RTX 3080</p>
+                        <div class="price">~ 800€</div>
+                        <p>Vrhunska zmogljivost za 4K gaming in profesionalno delo</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Comparison Page -->
+        <div id="comparison" class="page">
+            <h2 style="text-align: center; margin-bottom: 30px; font-size: 2.5rem;">Primerjave Grafičnih Kartic</h2>
+            
+            <div class="comparison-table">
+                <div class="comparison-card">
+                    <h3>NVIDIA RTX 4060</h3>
+                    <p>8GB GDDR6</p>
+                    <div class="price">~ 350€</div>
+                    <p>Dobra za 1080p gaming z DLSS 3</p>
+                    <div class="specs" style="margin-top: 15px;">
+                        <span class="spec" data-term="dlss">DLSS 3</span>
+                        <span class="spec" data-term="av1">AV1 Encode</span>
+                        <span class="spec" data-term="power">Nizka poraba</span>
+                    </div>
+                </div>
+                
+                <div class="comparison-card">
+                    <h3>AMD RX 7600</h3>
+                    <p>8GB GDDR6</p>
+                    <div class="price">~ 300€</div>
+                    <p>Odlična vrednost za 1080p gaming</p>
+                    <div class="specs" style="margin-top: 15px;">
+                        <span class="spec" data-term="fsr">FSR 2</span>
+                        <span class="spec" data-term="av1">AV1 Encode</span>
+                        <span class="spec" data-term="power">Dobra vrednost</span>
+                    </div>
+                </div>
+                
+                <div class="comparison-card">
+                    <h3>NVIDIA RTX 4070</h3>
+                    <p>12GB GDDR6X</p>
+                    <div class="price">~ 650€</div>
+                    <p>Odlična za 1440p gaming</p>
+                    <div class="specs" style="margin-top: 15px;">
+                        <span class="spec" data-term="dlss">DLSS 3</span>
+                        <span class="spec" data-term="av1">AV1 Encode</span>
+                        <span class="spec" data-term="cuda">CUDA Cores</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card" style="margin-top: 40px;">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h2 class="card-title">NVIDIA vs AMD - Ključne Razlike</h2>
+                </div>
+                <div class="card-body">
+                    <p><strong>NVIDIA prednosti:</strong> DLSS tehnologija, boljša podpora za Ray Tracing, CUDA jedra, boljša podpora za strojno učenje, boljša oprema za snemanje (NVENC)</p>
+                    <p><strong>AMD prednosti:</strong> Boljša razmerje cena/zmogljivost, več VRAM-a v nižjih cenovnih razredih, FSR tehnologija deluje na vseh karticah, boljša energetska učinkovitost v srednjem razredu</p>
+                    <p>Izbira med NVIDIA in AMD je odvisna od vaših potreb in proračuna. NVIDIA je boljša za Ray Tracing in AI funkcije, medtem ko AMD ponuja boljšo vrednost za denar.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Performance Page -->
+        <div id="performance" class="page">
+            <h2 style="text-align: center; margin-bottom: 30px; font-size: 2.5rem;">Performance Grafičnih Kartic</h2>
+            
+            <table class="performance-table">
+                <thead>
+                    <tr>
+                        <th>Grafična Kartica</th>
+                        <th>1080p Gaming</th>
+                        <th>1440p Gaming</th>
+                        <th>4K Gaming</th>
+                        <th>Poraba Energije</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>RTX 4090</td>
+                        <td><span class="performance-rating">★★★★★</span></td>
+                        <td><span class="performance-rating">★★★★★</span></td>
+                        <td><span class="performance-rating">★★★★★</span></td>
+                        <td>450W</td>
+                    </tr>
+                    <tr>
+                        <td>RX 7900 XTX</td>
+                        <td><span class="performance-rating">★★★★★</span></td>
+                        <td><span class="performance-rating">★★★★★</span></td>
+                        <td><span class="performance-rating">★★★★☆</span></td>
+                        <td>355W</td>
+                    </tr>
+                    <tr>
+                        <td>RTX 4070 Ti</td>
+                        <td><span class="performance-rating">★★★★★</span></td>
+                        <td><span class="performance-rating">★★★★★</span></td>
+                        <td><span class="performance-rating">★★★☆☆</span></td>
+                        <td>285W</td>
+                    </tr>
+                    <tr>
+                        <td>RX 7700 XT</td>
+                        <td><span class="performance-rating">★★★★☆</span></td>
+                        <td><span class="performance-rating">★★★☆☆</span></td>
+                        <td><span class="performance-rating">★★☆☆☆</span></td>
+                        <td>245W</td>
+                    </tr>
+                    <tr>
+                        <td>RTX 4060</td>
+                        <td><span class="performance-rating">★★★★☆</span></td>
+                        <td><span class="performance-rating">★★★☆☆</span></td>
+                        <td><span class="performance-rating">★☆☆☆☆</span></td>
+                        <td>115W</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="card" style="margin-top: 40px;">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <h2 class="card-title">Kako Izbrati Pravo Kartico za Vaše Potrebe</h2>
+                </div>
+                <div class="card-body">
+                    <p><strong>Za 1080p gaming:</strong> RTX 4060, RX 7600, RTX 3060 - zadostuje za večino iger pri visokih nastavitvah</p>
+                    <p><strong>Za 1440p gaming:</strong> RTX 4070, RX 7700 XT, RTX 4060 Ti - optimalna izbira za visoko ločljivost gaming</p>
+                    <p><strong>Za 4K gaming:</strong> RTX 4080, RX 7900 XTX, RTX 4090 - vrhunska zmogljivost za najbolj zahtevne igre</p>
+                    <p><strong>Za rudarjenje:</strong> RTX 3060 Ti, RTX 3070, RX 6700 XT (odvisno od algoritma) - pomembna je hash hitrost in energetska učinkovitost</p>
+                    <p><strong>Za ustvarjalno delo:</strong> RTX 4070, RTX 4080 - pomemben je VRAM in število CUDA jeder</p>
+                    <p>Pomembno je tudi upoštevati porabo energije in potrebe po hladilni rešitvi, še posebej če nameravate kartico uporabljati za rudarjenje ali v majhni ohišju.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mining Page -->
+        <div id="mining" class="page">
+            <h2 style="text-align: center; margin-bottom: 30px; font-size: 2.5rem;">Rudarjenje s Grafičnimi Karticami</h2>
+            
+            <div class="mining-cards">
+                <div class="mining-card">
+                    <h3>Najboljše Kartice za Mining</h3>
+                    <p>1. NVIDIA RTX 3060 Ti - odlična hash hitrost in učinkovitost</p>
+                    <p>2. NVIDIA RTX 3070 - zanesljiva in energetsko učinkovita</p>
+                    <p>3. AMD RX 6700 XT - dobra za alternative Ethereumu</p>
+                    <p>4. NVIDIA RTX 3080 - visoka zmogljivost za večje operacije</p>
+                </div>
+                
+                <div class="mining-card">
+                    <h3>Dobičkonosnost</h3>
+                    <p>Dobičkonosnost rudarjenja je odvisna od:</p>
+                    <p>• Cene električne energije</p>
+                    <p>• Začetne investicije v opremo</p>
+                    <p>• Težavnosti mreže</p>
+                    <p>• Trenutne vrednosti kripto valute</p>
+                </div>
+                
+                <div class="mining-card">
+                    <h3>Stroški in Oprema</h3>
+                    <p>Poleg grafičnih kartic potrebujete še:</p>
+                    <p>• Močne napajalnike</p>
+                    <p>• Primerno hlajenje</p>
+                    <p>• Mining ogrodje (rig)</p>
+                    <p>• Programsko opremo za rudarjenje</p>
+                </div>
+            </div>
+            
+            <h3 style="margin: 40px 0 20px; text-align: center;">Ocenjena Dobičkonosnost Rudarjenja (dnevno)</h3>
+            <table class="profitability-table">
+                <thead>
+                    <tr>
+                        <th>Grafična Kartica</th>
+                        <th>Hash Rate (MH/s)</th>
+                        <th>Poraba Energije</th>
+                        <th>Dnevni Dobiček*</th>
+                        <th>Donosnost</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>RTX 3060 Ti</td>
+                        <td>60 MH/s</td>
+                        <td>130W</td>
+                        <td class="profit-positive">0.85€</td>
+                        <td class="profit-positive">Zmerna</td>
+                    </tr>
+                    <tr>
+                        <td>RTX 3070</td>
+                        <td>62 MH/s</td>
+                        <td>125W</td>
+                        <td class="profit-positive">0.88€</td>
+                        <td class="profit-positive">Dobra</td>
+                    </tr>
+                    <tr>
+                        <td>RX 6700 XT</td>
+                        <td>47 MH/s</td>
+                        <td>130W</td>
+                        <td class="profit-positive">0.65€</td>
+                        <td class="profit-positive">Zmerna</td>
+                    </tr>
+                    <tr>
+                        <td>RTX 3080</td>
+                        <td>100 MH/s</td>
+                        <td>220W</td>
+                        <td class="profit-positive">1.45€</td>
+                        <td class="profit-positive">Dobra</td>
+                    </tr>
+                    <tr>
+                        <td>RTX 4060</td>
+                        <td>35 MH/s</td>
+                        <td>115W</td>
+                        <td class="profit-negative">0.42€</td>
+                        <td class="profit-negative">Slaba</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="text-align: center; margin-top: 10px; font-size: 0.9rem; opacity: 0.7;">*Ocenjeno pri ceni električne energije 0.15€/kWh. Vrednosti so okvirne in se lahko dnevno spreminjajo.</p>
+            
+            <div class="card" style="margin-top: 40px;">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <h2 class="card-title">Opozorila in Tveganja</h2>
+                </div>
+                <div class="card-body">
+                    <p><strong>Garancija:</strong> Rudarjenje lahko prekine garancijo na grafično kartico</p>
+                    <p><strong>Življenjska doba:</strong> Nenehna obremenitev skrajša življenjsko dobo kartice</p>
+                    <p><strong>Donosnost:</strong> Cene kripto valut so zelo nestanovitne</p>
+                    <p><strong>Pravni vidiki:</strong> Preverite lokalne zakone o rudarjenju kripto valut</p>
+                    <p>Pred začetkom rudarjenja nujno preučite vse vidike in tveganja ter izračunajte predvidljivo donosnost glede na vaše stroške električne energije.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 50 Series Page -->
+        <div id="series50" class="page">
+            <div class="series-highlight">
+                <h2>50 Serija Grafičnih Kartic</h2>
+                <p>Prikaz najnovejših grafičnih kartic serije 50 od NVIDIA in AMD</p>
+            </div>
+            
+            <h2 style="text-align: center; margin: 40px 0 30px; font-size: 2.5rem;">NVIDIA RTX 50 Serija</h2>
+            
+            <div class="series-cards">
+                <div class="series-card">
+                    <h3>RTX 5050</h3>
+                    <p>Osnovna kartica za 1080p gaming</p>
+                    <div class="price">~ 300€</div>
+                    <p>6GB GDDR6 • 128-bit</p>
+                    <div class="specs" style="margin-top: 15px;">
+                        <span class="spec" data-term="dlss">DLSS 3.5</span>
+                        <span class="spec" data-term="av1">AV1 Encode</span>
+                    </div>
+                </div>
+                
+                <div class="series-card">
+                    <h3>RTX 5060</h3>
+                    <p>Popolna za 1080p in 1440p gaming</p>
+                    <div class="price">~ 400€</div>
+                    <p>8GB GDDR6 • 192-bit</p>
+                    <div class="specs" style="margin-top: 15px;">
+                        <span class="spec" data-term="dlss">DLSS 3.5</span>
+                        <span class="spec" data-term="av1">AV1 Encode</span>
+                    </div>
+                </div>
+                
+                <div class="series-card">
+                    <h3>RTX 5070</h3>
+                    <p>Odlična za 1440p gaming</p>
+                    <div class="price">~ 600€</div>
+                    <p>12GB GDDR6X • 256-bit</p>
+                    <div class="specs" style="margin-top: 15px;">
+                        <span class="spec" data-term="dlss">DLSS 3.5</span>
+                        <span class="spec" data-term="av1">AV1 Encode</span>
+                    </div>
+                </div>
+                
+                <div class="series-card">
+                    <h3>RTX 5080</h3>
+                    <p>Zmogljiva za 4K gaming</p>
+                    <div class="price">~ 900€</div>
+                    <p>16GB GDDR6X • 320-bit</p>
+                    <div class="specs" style="margin-top: 15px;">
+                        <span class="spec" data-term="dlss">DLSS 3.5</span>
+                        <span class="spec" data-term="av1">AV1 Encode</span>
+                    </div>
+                </div>
+                
+                <div class="series-card">
+                    <h3>RTX 5090</h3>
+                    <p>Vrhunska zmogljivost za 4K+ gaming</p>
+                    <div class="price">~ 1600€</div>
+                    <p>24GB GDDR7 • 384-bit</p>
+                    <div class="specs" style="margin-top: 15px;">
+                        <span class="spec" data-term="dlss">DLSS 3.5</span>
+                        <span class="spec" data-term="av1">AV1 Encode</span>
+                    </div>
+                </div>
+            </div>
+            
+            <h2 style="text-align: center; margin: 60px 0 30px; font-size: 2.5rem;">AMD RX 8000 Serija</h2>
+            
+            <div class="series-cards">
+                <div class="series-card">
+                    <h3>RX 8050</h3>
+                    <p>Osnovna kartica za 1080p gaming</p>
+                    <div class="price">~ 280€</div>
+                    <p>6GB GDDR6 • 128-bit</p>
+                    <div class="specs" style="margin-top: 15px;">
+                        <span class="spec" data-term="fsr">FSR 3</span>
+                        <span class="spec" data-term="av1">AV1 Encode</span>
+                    </div>
+                </div>
+                
+                <div class="series-card">
+                    <h3>RX 8060</h3>
+                    <p>Popolna za 1080p in 1440p gaming</p>
+                    <div class="price">~ 380€</div>
+                    <p>8GB GDDR6 • 192-bit</p>
+                    <div class="specs" style="margin-top: 15px;">
+                        <span class="spec" data-term="fsr">FSR 3</span>
+                        <span class="spec" data-term="av1">AV1 Encode</span>
+                    </div>
+                </div>
+                
+                <div class="series-card">
+                    <h3>RX 8070</h3>
+                    <p>Odlična za 1440p gaming</p>
+                    <div class="price">~ 550€</div>
+                    <p>12GB GDDR6 • 256-bit</p>
+                    <div class="specs" style="margin-top: 15px;">
+                        <span class="spec" data-term="fsr">FSR 3</span>
+                        <span class="spec" data-term="av1">AV1 Encode</span>
+                    </div>
+                </div>
+                
+                <div class="series-card">
+                    <h3>RX 8080</h3>
+                    <p>Zmogljiva za 4K gaming</p>
+                    <div class="price">~ 800€</div>
+                    <p>16GB GDDR6 • 320-bit</p>
+                    <div class="specs" style="margin-top: 15px;">
+                        <span class="spec" data-term="fsr">FSR 3</span>
+                        <span class="spec" data-term="av1">AV1 Encode</span>
+                    </div>
+                </div>
+                
+                <div class="series-card">
+                    <h3>RX 8090</h3>
+                    <p>Vrhunska zmogljivost za 4K+ gaming</p>
+                    <div class="price">~ 1200€</div>
+                    <p>24GB GDDR7 • 384-bit</p>
+                    <div class="specs" style="margin-top: 15px;">
+                        <span class="spec" data-term="fsr">FSR 3</span>
+                        <span class="spec" data-term="av1">AV1 Encode</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Buying Page -->
+        <div id="buying" class="page">
+            <h2 style="text-align: center; margin-bottom: 30px; font-size: 2.5rem;">Nakup Grafičnih Kartic</h2>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-store"></i>
+                        </div>
+                        <h2 class="card-title">Kje Kupiti</h2>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Spletne trgovine:</strong> Amazon, Newegg, Caseking, Mindfactory</p>
+                        <p><strong>Lokalne trgovine:</strong> Big Bang, Harvey Norman, Mimovrste</p>
+                        <p><strong>Rabljene kartice:</strong> eBay, Bolha, Facebook Marketplace</p>
+                        <p>Pri nakupu rabljenih kartic bodite pozorni na morebitno uporabo za rudarjenje.</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-euro-sign"></i>
+                        </div>
+                        <h2 class="card-title">Cenovni Svetovi</h2>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Budget (do 300€):</strong> GTX 1660 Super, RX 6600</p>
+                        <p><strong>Srednji razred (300-600€):</strong> RTX 4060, RX 7600, RTX 3060 Ti</p>
+                        <p><strong>Visoki razred (600-1000€):</strong> RTX 4070, RX 7700 XT, RTX 4070 Ti</p>
+                        <p><strong>Enthusiast (1000€+):</strong> RTX 4080, RX 7900 XTX, RTX 4090</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <h2 class="card-title">Kdaj Kupiti</h2>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Ob izidu novih modelov:</strong> Cene starih modelov padejo</p>
+                        <p><strong>Črni petek/Božič:</strong> Številni popusti</p>
+                        <p><strong>Po koncu rudarske norosti:</strong> Veliko rabljenih kartic na trgu</p>
+                        <p><strong>Izogibajte se:</strong> Ob izdaji zelo pričakovanih iger ali novih kripto valut</p>
+                        <p>Spremljajte trg in počakajte na pravo priložnost za nakup.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="comparison">
+                <h2>Priporočene Povezave za Nakup</h2>
+                <div class="store-links">
+                    <a href="https://www.amazon.com/s?k=graphics+card" class="store-link" target="_blank">
+                        <i class="fab fa-amazon"></i> Amazon
+                    </a>
+                    <a href="https://www.newegg.com/GPUs/SubCategory/ID-48" class="store-link" target="_blank">
+                        <i class="fas fa-desktop"></i> Newegg
+                    </a>
+                    <a href="https://www.nvidia.com/en-us/geforce/graphics-cards/30-series/" class="store-link" target="_blank">
+                        <i class="fas fa-microchip"></i> NVIDIA Official
+                    </a>
+                    <a href="https://www.amd.com/en/graphics/radeon-rx-graphics" class="store-link" target="_blank">
+                        <i class="fas fa-microchip"></i> AMD Official
+                    </a>
+                    <a href="https://www.ebay.com/b/Graphics-Cards/27386/bn_661783" class="store-link" target="_blank">
+                        <i class="fab fa-ebay"></i> eBay
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <h3>Grafične Kartice - Vodnik 2023</h3>
+            <p>Vse informacije so zgolj informativnega značaja. Cene se lahko spreminjajo.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p>&copy; 2023 Vse pravice pridržane</p>
+        </footer>
+    </div>
+
+    <!-- Modal for term explanations -->
+    <div id="termModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 id="modalTitle">Naslov</h2>
+            <div id="modalContent">
+                Vsebina razlage...
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Navigation functionality
+        document.querySelectorAll('.nav-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                document.querySelectorAll('.nav-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Hide all pages
+                document.querySelectorAll('.page').forEach(page => {
+                    page.classList.remove('active');
+                });
+                
+                // Show selected page
+                const pageId = this.getAttribute('data-page');
+                document.getElementById(pageId).classList.add('active');
+                
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+        
+        // Add some interactive effects to cards
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+        
+        // Modal functionality for term explanations
+        const modal = document.getElementById('termModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalContent = document.getElementById('modalContent');
+        const closeModal = document.querySelector('.close-modal');
+        
+        // Term explanations
+        const termExplanations = {
+            'fps': {
+                title: 'FPS (Frames Per Second)',
+                content: '<p>FPS označuje število sličic (frame-ov), ki jih grafična kartica prikaže na zaslonu v eni sekundi. Višji FPS pomeni bolj gladko in odzivno izkušnjo igranja.</p><p><strong>Standardne vrednosti:</strong></p><ul><li>30 FPS - osnovna gladkost</li><li>60 FPS - standard za večino iger</li><li>120+ FPS - idealno za competitive gaming</li><li>240+ FPS - vrhunska gladkost za profesionalce</li></ul>'
+            },
+            'dlss': {
+                title: 'DLSS (Deep Learning Super Sampling)',
+                content: '<p>DLSS je NVIDIA-jeva tehnologija, ki uporablja umetno inteligenco za izboljšanje performance in kakovosti slike. Deluje tako, da upodablja igro pri nižji ločljivosti in nato z AI poveča sliko na želeno ločljivost, pri čemer ohrani kakovost slike.</p><p><strong>Prednosti:</strong></p><ul><li>Višji FPS brez vidne izgube kakovosti</li><li>Boljša performance z vključenim Ray Tracingom</li><li>Podpora za 8K gaming</li></ul>'
+            },
+            'fsr': {
+                title: 'FSR (FidelityFX Super Resolution)',
+                content: '<p>FSR je AMD-jeva tehnologija za izboljšanje performance, podobna DLSS-ju. Za razliko od DLSS ne zahteva specializiranih AI jeder, zato deluje na vseh grafičnih karticah, tudi NVIDIA-jevih.</p><p><strong>Prednosti:</strong></p><ul><li>Delo na vseh grafičnih karticah</li><li>Enostavna implementacija za razvijalce</li><li>Več načinov kakovosti (Performance, Balanced, Quality, Ultra Quality)</li></ul>'
+            },
+            'raytracing': {
+                title: 'Ray Tracing',
+                content: '<p>Ray Tracing je tehnika upodabljanja, ki simulira fizikalno vedenje svetlobe za ustvarjanje ultra-realističnih osvetlitev, senc in odsevov. To omogoča neverjetno realistične vizualne učinke v igrah.</p><p><strong>Ključni elementi:</strong></p><ul><li>Realistične sence in osvetlitev</li><li>Natančni odsevi</li><li>Prosojnost in lom svetlobe</li><li>Globalno osvetlitev</li></ul><p><strong>Pomanjkljivosti:</strong> Ray Tracing znatno zmanjša performance, zato je potrebna zmogljiva grafična kartica ali tehnologija kot DLSS/FSR.</p>'
+            },
+            'hashrate': {
+                title: 'Hash Rate',
+                content: '<p>Hash Rate označuje hitrost, s katero grafična kartica lahko rešuje matematične probleme, potrebne za rudarjenje kripto valut. Meri se v hashes na sekundo (H/s).</p><p><strong>Pomen za rudarjenje:</strong></p><ul><li>Višji hash rate = več donosnost</li><li>Pomembna je tudi energetska učinkovitost (hash rate na watt)</li><li>Različni algoritmi zahtevajo različne tipe računanja</li></ul>'
+            },
+            'vram': {
+                title: 'VRAM (Video RAM)',
+                content: '<p>VRAM je pomnilnik, namenjen izključno grafični kartici. Shranjuje teksture, 3D modeli in druge podatke, potrebne za upodabljanje slike.</p><p><strong>Pomen:</strong></p><ul><li>Več VRAM-a omogoča višje ločljivosti in boljše teksture</li><li>Pomemben za gaming pri visokih ločljivostih (1440p, 4K)</li><li>Kritičen za rudarjenje določenih kripto valut</li><li>Pomemben za ustvarjalno delo (video urejanje, 3D modeliranje)</li></ul>'
+            },
+            'cuda': {
+                title: 'CUDA (Compute Unified Device Architecture)',
+                content: '<p>CUDA je NVIDIA-jeva računalniška platforma, ki omogoča uporabo GPU-jev za splošne namene (GPGPU). CUDA jedra se uporabljajo za pospeševanje različnih računskih nalog zunaj upodabljanja grafike.</p><p><strong>Uporaba:</strong></p><ul><li>Strojno učenje in AI</li><li>Znanstveni izračuni</li><li>Video urejanje in renderjanje</li><li>Fizikalne simulacije</li></ul>'
+            },
+            'rendering': {
+                title: 'Renderjanje',
+                content: '<p>Renderjanje je proces ustvarjanja 2D slike iz 3D modelov z uporabo računalniških programov. Grafične kartice pospešujejo ta proces z vzporedno obdelavo podatkov.</p><p><strong>Vrste renderjanja:</strong></p><ul><li>Real-time rendering (igre)</li><li>Offline rendering (film, arhitektura)</li><li>GPU rendering (uporaba grafične kartice)</li><li>CPU rendering (uporaba procesorja)</li></ul>'
+            },
+            'power': {
+                title: 'Energetska Učinkovitost',
+                content: '<p>Energetska učinkovitost grafične kartice meri, kako dobro pretvarja električno energijo v računsko moč. Pomembna je za rudarjenje in dolgoročno uporabo.</p><p><strong>Dejavniki:</strong></p><ul><li>Poraba energije (Watt)</li><li>Performance na watt</li><li>Hash rate na watt (za rudarjenje)</li><li>FPS na watt (za gaming)</li></ul>'
+            },
+            '8k': {
+                title: '8K Ločljivost',
+                content: '<p>8K je ultra-visoka ločljivost 7680×4320 pikslov, kar je štirikrat več kot 4K in šestnajstkrat več kot 1080p. Za gaming pri tej ločljivosti so potrebne zelo zmogljive grafične kartice.</p><p><strong>Zahteve za 8K gaming:</strong></p><ul><li>Zelo zmogljiva grafična kartica (RTX 4090, RX 7900 XTX)</li><li>Veliko VRAM-a (16GB+)</li><li>Tehnologije kot DLSS/FSR za ohranjanje FPS</li><li>Ustrezni monitor in povezave (HDMI 2.1, DisplayPort 1.4)</li></ul>'
+            },
+            'av1': {
+                title: 'AV1 Encode/Decode',
+                content: '<p>AV1 je sodobni video kodek, ki ponuja boljšo kompresijo kot starejši kodeki kot sta H.264 in H.265. Podpora za strojno kodiranje AV1 v grafičnih karticah omogoča boljšo kakovost videa pri nižji bitrati.</p><p><strong>Prednosti:</strong></p><ul><li>Boljša kakovost videa pri enaki velikosti datoteke</li><li>Manjša poraba pasovne širine pri striming</li><li>Brezplačen in odprt standard</li><li>Vse večja podpora v platformah kot so YouTube, Netflix</li></ul>'
+            }
+        };
+        
+        // Add click events to all term elements
+        document.querySelectorAll('.spec').forEach(spec => {
+            spec.addEventListener('click', function() {
+                const term = this.getAttribute('data-term');
+                if (termExplanations[term]) {
+                    modalTitle.textContent = termExplanations[term].title;
+                    modalContent.innerHTML = termExplanations[term].content;
+                    modal.style.display = 'flex';
+                }
+            });
+        });
+        
+        // Close modal when clicking X or outside modal
+        closeModal.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+        
+        window.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
